@@ -1,0 +1,27 @@
+{
+  "name": "@venore/theme-editorial",
+  "version": "0.1.0",
+  "description": "Editorial — tema do Venore Docks com estética de jornal/revista: papel quente e tinta preta, um único acento vermelhão, serifa de manchete, cantos retos, fios e muito respiro.",
+  "private": true,
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": "./index.ts",
+    "./theme": "./theme.ts",
+    "./color-palettes": "./color-palettes.ts",
+    "./theme.css": "./theme.css",
+    "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "lucide-react": ">=0.400",
+    "next": ">=16",
+    "react": ">=19",
+    "react-dom": ">=19"
+  },
+  "venoreTheme": {
+    "contract": "8.0.0",
+    "key": "editorial"
+  }
+}

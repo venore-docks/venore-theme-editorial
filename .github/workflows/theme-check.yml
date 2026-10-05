@@ -1,0 +1,17 @@
+name: Theme check
+
+# Gate do tema (spec v8 §10 no core): roda o workflow reutilizável do core contra este checkout —
+# codegen estrito, contrato de tokens, contraste por região, orçamento, harness SSR e Playwright.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  theme-check:
+    uses: venore-docks/venore-docks/.github/workflows/theme-check.yml@main
+    with:
+      theme-key: editorial
+    secrets:
+      core-token: ${{ secrets.VENORE_CORE_TOKEN }}

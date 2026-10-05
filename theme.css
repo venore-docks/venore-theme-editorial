@@ -1,0 +1,343 @@
+/* Venore Editorial — jornal/revista: papel quente e tinta preta, um único acento (vermelhão por
+   padrão), manchetes serifadas, cantos retos, fios e muito respiro.
+
+   [data-theme="editorial"] no <html> ativa o bloco base; .dark também vive no <html>. As regiões
+   próprias (cabeçalho, expediente, faixa "Nesta seção", sumário) só usam o vocabulário shadcn e
+   os tokens de região; os ganchos [data-editorial-*] abaixo são do próprio pacote. */
+
+[data-theme="editorial"] {
+  /* Acento — primitivos por modo; a opção "accent" troca só estes. Uma paleta do admin
+     (html[data-theme], especificidade maior) continua vencendo em --primary. */
+  --ed-accent-light: oklch(0.53 0.2 32);
+  --ed-on-accent-light: oklch(0.98 0.01 85);
+  --ed-accent-dark: oklch(0.7 0.17 35);
+  --ed-on-accent-dark: oklch(0.16 0.01 40);
+  --ed-ink: oklch(0.18 0.008 60);
+  --ed-paper: oklch(0.95 0.012 85);
+  --ed-headline: var(--font-display);
+
+  /* raio — cantos retos. */
+  --radius: 0rem;
+  --radius-shell: 0rem;
+  --radius-panel: 0rem;
+  --ui-radius-scale-sm: 1;
+  --ui-radius-scale-md: 1;
+  --ui-radius-scale-lg: 1;
+  --ui-radius-scale-xl: 1;
+  --ui-radius-scale-2xl: 1;
+  --ui-radius-scale-3xl: 1;
+  --ui-radius-scale-4xl: 1;
+
+  --ui-tracking-caps: 0.14em;
+
+  --ui-motion-fast: 120ms;
+  --ui-motion-base: 180ms;
+  --ui-motion-slow: 300ms;
+  --ui-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ui-ease-emphasis: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  --ui-font-weight-body: 400;
+  --ui-font-weight-medium: 500;
+  --ui-font-weight-semibold: 600;
+  --ui-font-weight-display: 800;
+  --ui-leading-copy: 1.65;
+  --ui-leading-display: 1.05;
+  --ui-tracking-copy: 0em;
+  --ui-tracking-display: -0.025em;
+
+  --ui-control-height-xs: 1.75rem;
+  --ui-control-height-sm: 2.25rem;
+  --ui-control-height-md: 2.75rem;
+  --ui-control-height-lg: 3rem;
+  --ui-control-padding-x: 1.25rem;
+  --ui-button-padding-scale-xs: 0.5;
+  --ui-button-padding-scale-sm: 0.75;
+  --ui-button-padding-scale-lg: 1.8;
+  --ui-button-gap: 0.5rem;
+
+  --ui-panel-padding-x: 1.5rem;
+  --ui-panel-padding-y: 1.5rem;
+
+  /* base shadcn — papel e tinta. */
+  --background: oklch(0.965 0.013 85);
+  --foreground: var(--ed-ink);
+  --card: oklch(0.985 0.008 85);
+  --card-foreground: var(--ed-ink);
+  --popover: oklch(0.985 0.008 85);
+  --popover-foreground: var(--ed-ink);
+  --primary: var(--ed-accent-light);
+  --primary-foreground: var(--ed-on-accent-light);
+  --secondary: oklch(0.92 0.016 85);
+  --secondary-foreground: var(--ed-ink);
+  --muted: oklch(0.92 0.016 85);
+  --muted-foreground: oklch(0.33 0.015 60);
+  --accent: oklch(0.6 0.15 38);
+  --accent-foreground: oklch(0.15 0.01 40);
+  --destructive: oklch(0.5 0.19 25);
+  --destructive-foreground: oklch(0.98 0.01 25);
+  --border: oklch(0.82 0.016 75);
+  --input: oklch(0.6 0.015 70);
+  --ring: var(--ed-accent-light);
+
+  --shadow-color: oklch(0.3 0.01 60);
+  --shadow-color-strong: oklch(0.18 0.01 60);
+  --shadow-color-soft: color-mix(in oklch, var(--shadow-color) 14%, transparent);
+  --shadow-color-strong-soft: color-mix(in oklch, var(--shadow-color-strong) 16%, transparent);
+  --shadow-panel: 0 0 0 1px var(--border);
+  --shadow-float: 4px 4px 0 0 var(--foreground);
+  --shadow-header: 0 1px 0 0 var(--foreground);
+
+  --sidebar-width-expanded: 16rem;
+  --sidebar-width-collapsed: 4.5rem;
+  --sidebar-bg-start: var(--background);
+  --sidebar-bg-end: var(--background);
+  --sidebar-bg: var(--background);
+  --sidebar-bg-admin-start: var(--card);
+  --sidebar-bg-admin-end: var(--card);
+  --sidebar-bg-admin: var(--card);
+
+  /* Superfície "tinta" (expediente e estilo de seção "ink") — escura nos dois modos. */
+  --ed-ink-background: var(--ed-ink);
+  --ed-ink-muted: oklch(0.24 0.008 60);
+  --ed-ink-muted-foreground: oklch(0.78 0.012 85);
+  --ed-ink-card: oklch(0.21 0.008 60);
+  --ed-ink-border: oklch(0.38 0.01 60);
+
+  /* Estilos de seção do tema (page builder). */
+  --ed-newsprint-background: oklch(0.92 0.02 85);
+  --ed-newsprint-border: var(--ed-ink);
+
+  --warning: oklch(0.55 0.13 70);
+  --warning-foreground: oklch(0.98 0.01 70);
+  --warning-soft: color-mix(in oklch, var(--warning) 12%, var(--card));
+  --warning-border: color-mix(in oklch, var(--warning) 30%, var(--border));
+
+  --success: oklch(0.5 0.12 155);
+  --success-foreground: oklch(0.98 0.01 155);
+  --success-soft: color-mix(in oklch, var(--success) 12%, var(--card));
+  --success-border: color-mix(in oklch, var(--success) 30%, var(--border));
+
+  --chart-1: var(--primary);
+  --chart-2: var(--foreground);
+  --chart-3: var(--muted-foreground);
+  --chart-4: var(--warning);
+  --chart-5: oklch(0.5 0.13 255);
+  --chart-6: oklch(0.55 0.1 155);
+  --chart-7: oklch(0.6 0.12 70);
+
+  --overlay-foreground: oklch(1 0 0);
+  --ed-scrim: oklch(0.18 0.008 60 / 0.55);
+
+  --presentation-ground: oklch(0.16 0.006 60);
+  --presentation-card: oklch(0.2 0.007 60);
+  --presentation-border: oklch(0.32 0.01 60);
+  --presentation-foreground: oklch(0.94 0.012 85);
+  --presentation-muted-foreground: oklch(0.74 0.012 85);
+  --presentation-success: oklch(0.7 0.13 155);
+  --presentation-success-soft: color-mix(in oklch, var(--presentation-success) 16%, var(--presentation-card));
+  --presentation-success-border: color-mix(in oklch, var(--presentation-success) 34%, var(--presentation-border));
+  --presentation-warning: oklch(0.78 0.14 75);
+  --presentation-warning-soft: color-mix(in oklch, var(--presentation-warning) 16%, var(--presentation-card));
+  --presentation-warning-border: color-mix(in oklch, var(--presentation-warning) 34%, var(--presentation-border));
+  --presentation-destructive: oklch(0.62 0.2 28);
+  --presentation-renewed: oklch(0.66 0.14 250);
+  --presentation-new: oklch(0.7 0.17 35);
+
+  --app-bg-start: var(--background);
+  --app-bg-mid: var(--background);
+  --app-bg-end: var(--background);
+  --app-background: linear-gradient(180deg, var(--app-bg-start) 0%, var(--app-bg-end) 100%);
+
+  --header-bg: var(--background);
+  --header-chip-bg: var(--muted);
+  --header-avatar-bg: var(--foreground);
+  --header-avatar-fg: var(--background);
+  --header-border-subtle: var(--border);
+  --header-border-strong: var(--foreground);
+}
+
+[data-theme="editorial"].dark {
+  --background: oklch(0.165 0.006 60);
+  --foreground: oklch(0.93 0.012 85);
+  --card: oklch(0.2 0.007 60);
+  --card-foreground: oklch(0.94 0.012 85);
+  --popover: oklch(0.2 0.007 60);
+  --popover-foreground: oklch(0.94 0.012 85);
+  --primary: var(--ed-accent-dark);
+  --primary-foreground: var(--ed-on-accent-dark);
+  --secondary: oklch(0.25 0.008 60);
+  --secondary-foreground: oklch(0.94 0.012 85);
+  --muted: oklch(0.24 0.008 60);
+  --muted-foreground: oklch(0.8 0.012 85);
+  --accent: oklch(0.62 0.14 40);
+  --accent-foreground: oklch(0.15 0.01 40);
+  --destructive: oklch(0.64 0.19 28);
+  --destructive-foreground: oklch(0.15 0.01 28);
+  --border: oklch(0.34 0.01 60);
+  --input: oklch(0.5 0.012 60);
+  --ring: var(--ed-accent-dark);
+
+  --shadow-color: oklch(0 0 0);
+  --shadow-color-strong: oklch(0 0 0);
+  --shadow-color-soft: color-mix(in oklch, var(--shadow-color) 45%, transparent);
+  --shadow-color-strong-soft: color-mix(in oklch, var(--shadow-color-strong) 45%, transparent);
+  --shadow-panel: 0 0 0 1px var(--border);
+  --shadow-float: 4px 4px 0 0 var(--foreground);
+  --shadow-header: 0 1px 0 0 var(--foreground);
+
+  --ed-ink-background: oklch(0.12 0.005 60);
+  --ed-ink-border: oklch(0.32 0.01 60);
+
+  --ed-newsprint-background: oklch(0.21 0.012 70);
+  --ed-newsprint-border: oklch(0.93 0.012 85);
+
+  --warning: oklch(0.76 0.14 75);
+  --warning-foreground: oklch(0.16 0.02 70);
+  --warning-soft: color-mix(in oklch, var(--warning) 16%, var(--card));
+  --warning-border: color-mix(in oklch, var(--warning) 32%, var(--border));
+
+  --success: oklch(0.7 0.13 155);
+  --success-foreground: oklch(0.15 0.02 155);
+  --success-soft: color-mix(in oklch, var(--success) 16%, var(--card));
+  --success-border: color-mix(in oklch, var(--success) 32%, var(--border));
+
+  --chart-1: var(--primary);
+  --chart-2: var(--foreground);
+  --chart-3: var(--muted-foreground);
+  --chart-4: var(--warning);
+  --chart-5: oklch(0.7 0.12 255);
+  --chart-6: oklch(0.72 0.11 155);
+  --chart-7: oklch(0.78 0.12 70);
+
+  --ed-scrim: oklch(0.05 0.005 60 / 0.7);
+
+  --app-bg-start: var(--background);
+  --app-bg-mid: var(--background);
+  --app-bg-end: var(--background);
+  --app-background: linear-gradient(180deg, var(--app-bg-start) 0%, var(--app-bg-end) 100%);
+
+  --header-bg: var(--background);
+  --header-chip-bg: var(--muted);
+  --header-avatar-bg: var(--foreground);
+  --header-avatar-fg: var(--background);
+  --header-border-subtle: var(--border);
+  --header-border-strong: var(--foreground);
+}
+
+/* Opção "accent". */
+[data-theme="editorial"][data-opt-accent="cobalt"] {
+  --ed-accent-light: oklch(0.47 0.17 262);
+  --ed-accent-dark: oklch(0.74 0.12 255);
+}
+[data-theme="editorial"][data-opt-accent="forest"] {
+  --ed-accent-light: oklch(0.46 0.1 155);
+  --ed-accent-dark: oklch(0.75 0.12 155);
+}
+[data-theme="editorial"][data-opt-accent="ink"] {
+  --ed-accent-light: var(--ed-ink);
+  --ed-on-accent-light: var(--ed-paper);
+  --ed-accent-dark: var(--ed-paper);
+  --ed-on-accent-dark: var(--ed-ink);
+}
+
+/* Opção "headline" e "density" (a densidade encolhe a unidade de espaçamento do Tailwind). */
+[data-theme="editorial"][data-opt-headline="sans"] {
+  --ed-headline: var(--font-sans);
+}
+[data-theme="editorial"][data-opt-density="compact"] [data-layout="editorial"] {
+  --spacing: 0.2rem;
+}
+
+/* Títulos de qualquer página pública (kit e plugins) na fonte de manchete. */
+[data-theme="editorial"] [data-layout="editorial"] main :is(h1, h2, h3) {
+  font-family: var(--ed-headline);
+  letter-spacing: var(--ui-tracking-display);
+}
+
+/* Matéria longa: corpo maior, capitular, citação em destaque e fios. */
+[data-theme="editorial"] [data-editorial-prose] {
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+[data-theme="editorial"]:not([data-opt-drop-cap="false"]) [data-editorial-prose] p:first-of-type::first-letter {
+  float: inline-start;
+  margin-block-start: 0.08em;
+  margin-inline-end: 0.1em;
+  font-family: var(--ed-headline);
+  font-size: 4.4em;
+  font-weight: 800;
+  line-height: 0.8;
+  color: var(--primary);
+}
+[data-theme="editorial"] [data-editorial-prose] blockquote {
+  margin-block: 2.5rem;
+  padding-block: 1.25rem;
+  border-block: 3px solid var(--primary);
+  font-family: var(--ed-headline);
+  font-size: 1.6rem;
+  font-style: italic;
+  line-height: 1.3;
+  text-align: center;
+  color: var(--foreground);
+}
+[data-theme="editorial"] [data-editorial-prose] hr {
+  margin-block: 2.5rem;
+  border: 0;
+  border-block-start: 4px double var(--foreground);
+}
+[data-theme="editorial"] [data-editorial-prose] a {
+  text-decoration-color: var(--primary);
+  text-underline-offset: 0.2em;
+}
+
+/* Fundo atrás das camadas do kit (folha "Mais" da barra inferior). */
+[data-theme="editorial"] [data-scrim] {
+  background-color: var(--ed-scrim);
+}
+
+/* Estilos de seção do tema; o expediente (rodapé) usa a mesma superfície "tinta". */
+[data-theme="editorial"] [data-section-style="newsprint"] {
+  --background: var(--ed-newsprint-background);
+  --muted: var(--ed-newsprint-background);
+  --card: var(--ed-newsprint-background);
+  --border: var(--ed-newsprint-border);
+  background-color: var(--background);
+  border-block: 1px solid var(--ed-newsprint-border);
+}
+[data-theme="editorial"] :is([data-section-style="ink"], [data-editorial-colophon]) {
+  --background: var(--ed-ink-background);
+  --foreground: var(--ed-paper);
+  --muted: var(--ed-ink-muted);
+  --muted-foreground: var(--ed-ink-muted-foreground);
+  --card: var(--ed-ink-card);
+  --card-foreground: var(--ed-paper);
+  --primary: var(--ed-accent-dark);
+  --primary-foreground: var(--ed-on-accent-dark);
+  --border: var(--ed-ink-border);
+  --ring: var(--ed-accent-dark);
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* Variante "front-page" do hero: manchete de primeira página entre fios. */
+[data-theme="editorial"] [data-block="core.content.hero"][data-block-variant="front-page"] {
+  border-block: 4px double var(--foreground);
+}
+[data-theme="editorial"] [data-block="core.content.hero"][data-block-variant="front-page"] h1 {
+  font-family: var(--ed-headline);
+  font-size: clamp(2.75rem, 9vw, 6.5rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+[data-theme="editorial"] [data-block="core.content.hero"][data-block-variant="front-page"] h1 ~ p {
+  font-family: var(--ed-headline);
+  font-style: italic;
+}
+
+/* Variante "clipping" do card: recorte com sombra dura. */
+[data-theme="editorial"] [data-block="core.content.card"][data-block-variant="clipping"] {
+  border: 1px solid var(--foreground);
+  background-color: var(--card);
+  box-shadow: 6px 6px 0 0 var(--foreground);
+}
